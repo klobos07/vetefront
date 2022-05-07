@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Especie } from 'src/models/especie.model';
 import { Usuario } from '../../models/usuario.model';
 import { Raza } from 'src/models/raza.models';
+import { Medico } from 'src/models/medico.model';
 
 const base_url = environment.base_url;
 
@@ -47,6 +48,12 @@ export class BusquedasService {
     );
   }
 
+  private transformarMedicos( resultados: any[] ): Medico[] {
+    return resultados.map(
+    medico => new Medico(medico.nombre, medico.telefono , medico.uid, medico._id)
+    );
+  }
+
   buscar(
       tipo: 'usuarios'|'medicos'|'mascotas'|'citas'|'razas'|'especies',
       termino: string
@@ -66,6 +73,9 @@ export class BusquedasService {
 
                   case 'razas':
                     return this.transformarRazas(resp.resultados);
+
+                  case 'medicos':
+                    return this.transformarMedicos(resp.resultados);
 
                   default:
                     return [];

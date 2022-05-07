@@ -1,36 +1,58 @@
 import { Injectable } from '@angular/core';
+//impor usuario service
+import { UsuarioService } from '../services/usuario.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SidebarService {
+  public userInfo;
 
-  menu: any[] = [
-    {
-      titulo: 'Menu principal',
-      icono: 'mdi mdi-gauge',
-      submenu: [
-        { titulo: 'Inicio', url: '/' },
-        // { titulo: 'Gráficas', url: 'grafica1' },
-        { titulo: 'Catalogo', url: 'rxjs' },
-        { titulo: 'Eventos', url: 'Promesas' },
-        // { titulo: 'ProgressBar', url: 'progress' },
-      ]
-    },
+  constructor(public usuarioService: UsuarioService) {
+    this.userInfo = this.usuarioService.getUserInfo();
+  }
 
-    {
-      titulo: 'Servicios',
-      icono: 'mdi mdi-folder-lock-open',
-      submenu: [
-        { titulo: 'Usuarios', url: 'usuarios' },
-        { titulo: 'Citas Médicas', url: 'citas' },
-        { titulo: 'Médicos', url: 'medicos' },
-        { titulo: 'Mascotas', url: 'mascotas' },
-        { titulo: 'Razas', url: 'razas' },
-        { titulo: 'Especies', url: 'especies' },
-      ]
-    },
-  ];
+  public getMenu(): any[] {
+    let menu = [
+      {
+        titulo: 'Menu principal',
+        icono: 'mdi mdi-gauge',
+        submenu: [
+          { titulo: 'Inicio', url: '/' },
+          // { titulo: 'Gráficas', url: 'grafica1' },
+          { titulo: 'Catalogo', url: 'rxjs' },
+          { titulo: 'Eventos', url: 'Promesas' },
+          // { titulo: 'ProgressBar', url: 'progress' },
+        ],
+      },
+    ];
 
-  constructor() { }
+    if (this.userInfo.role === 'ADMIN_ROLE') {
+      let subAdmin = {
+        titulo: 'Servicios',
+        icono: 'mdi mdi-folder-lock-open',
+        submenu: [
+          { titulo: 'Usuarios', url: 'usuarios' },
+          { titulo: 'Citas Médicas', url: 'citas' },
+          { titulo: 'Médicos', url: 'medicos' },
+          { titulo: 'Mascotas', url: 'mascotas' },
+          { titulo: 'Razas', url: 'razas' },
+          { titulo: 'Especies', url: 'especies' },
+        ],
+      };
+      menu.push(subAdmin);
+    } else {
+      let subUser = {
+        titulo: 'Servicios',
+        icono: 'mdi mdi-folder-lock-open',
+        submenu: [
+          { titulo: 'Citas Médicas', url: 'citas' },
+          { titulo: 'Mascotas', url: 'mascotas' },
+        ],
+      };
+      menu.push(subUser);
+    }
+
+    return menu;
+  }
 }

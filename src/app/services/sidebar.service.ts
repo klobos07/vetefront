@@ -26,7 +26,6 @@ export class SidebarService {
         ],
       },
     ];
-
     if (this.userInfo.role === 'ADMIN_ROLE') {
       const subAdmin = {
         titulo: 'Servicios',

@@ -81,6 +81,7 @@ export class UsuarioService {
           const { email, google, nombre, role, img = '', uid } = resp.usuario;
           this.usuario = new Usuario(nombre, email, '', img, google, role, uid);
           localStorage.setItem('token', resp.token);
+          localStorage.setItem('user', JSON.stringify(resp.usuario));
           return true;
         }),
         catchError((error) => of(false))
@@ -90,7 +91,7 @@ export class UsuarioService {
   getUserInfo() {
     let identity: any = JSON.parse(localStorage.getItem('user') || '{}');
     if (identity) {
-      this.usuarioData = identity.user;
+      this.usuarioData = identity;
     } else {
       this.usuarioData = null;
     }

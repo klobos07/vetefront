@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-//impor usuario service
+// impor usuario service
 import { UsuarioService } from '../services/usuario.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SidebarService {
   }
 
   public getMenu(): any[] {
-    let menu = [
+    const menu = [
       {
         titulo: 'Menu principal',
         icono: 'mdi mdi-gauge',
@@ -27,7 +27,7 @@ export class SidebarService {
       },
     ];
     if (this.userInfo.role === 'ADMIN_ROLE') {
-      let subAdmin = {
+      const subAdmin = {
         titulo: 'Servicios',
         icono: 'mdi mdi-folder-lock-open',
         submenu: [
@@ -41,7 +41,7 @@ export class SidebarService {
       };
       menu.push(subAdmin);
     } else {
-      let subUser = {
+      const subUser = {
         titulo: 'Servicios',
         icono: 'mdi mdi-folder-lock-open',
         submenu: [

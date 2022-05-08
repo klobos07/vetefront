@@ -16,15 +16,15 @@ interface _CitaUser {
   
   export class Cita {
       constructor(
-        public motivo: string,
-        public observaciones: string,
-        public peso: string,
-        public tratamiento: string,
-        public horaCita: string,
-        public fechCita: string,
-        public usuario: string,
-        public mascota: string,
-        public medico: string,
+        public motivo?: string,
+        public observaciones?: string,
+        public peso?: string,
+        public tratamiento?: string,
+        public horaCita?: string,
+        public fechCita?: string,
+        public usuario?: string,
+        public mascota?: string,
+        public medico?: string,
         public _id?: string
     ) {}
   }

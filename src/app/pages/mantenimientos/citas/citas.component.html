@@ -5,7 +5,7 @@
 
               <input type="text"
                       class="form-control"
-                      placeholder="Buscar especie..."
+                      placeholder="Buscar cita..."
                       (keyup)="buscarCita( txtTermino.value )"
                       #txtTermino/>
 
@@ -29,8 +29,24 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Citas</h4>
-        <h6 class="card-subtitle">Citas registradas en mi aplicación</h6>
+        
+        <div class="row">
+          <div class="col-8">
+            <h4 class="card-title">Citas ({{citas.length}})</h4>
+            <h6 class="card-subtitle">
+              Citas registradas en mi aplicación
+            </h6>
+          </div>
+          <div class="col">
+              <div class="text-right">
+                <button class="btn btn-primary"
+                  (click)="abrirSweetAlert()">
+                  <i class="fa fa-hospital-o"></i>
+                  Crear Cita
+                </button>
+              </div>
+          </div>
+        </div>
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -75,7 +91,6 @@
                     [(ngModel)]="cita.tratamiento"
                   />
                 </td>
-                <td>{{ cita.tratamiento }}</td>
                 <td>{{ cita.horaCita }}</td>
                 <td>{{ cita.fechCita }}</td>
                 <td>{{ cita.mascota.nombre }}</td>
@@ -88,22 +103,14 @@
                   >
                     <i class="fa fa-pencil text-inverse m-r-10"></i>
                   </a>
-                  <a
-                    href="#"
-                    data-toggle="tooltip"
-                    data-original-title="Borrar"
-                  >
-                    <i class="fa fa-close text-danger"></i>
-                  </a>
+                  
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <button class="btn btn-secondary">Anteriores</button>
-        &nbsp;
-        <button class="btn btn-secondary">Siguientes</button>
+
       </div>
     </div>
   </div>

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/90effea5-6381-4694-962b-841b5505af60/resourceGroups/DefaultResourceGroup-CAU/providers/Microsoft.Web/sites/vetevallefront",
+    "appService.deploySubpath": "dist/adminpro"
+}

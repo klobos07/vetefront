@@ -20,8 +20,8 @@ export class SidebarService {
         submenu: [
           { titulo: 'Inicio', url: '/' },
           // { titulo: 'Gráficas', url: 'grafica1' },
-          { titulo: 'Catalogo', url: 'rxjs' },
-          { titulo: 'Eventos', url: 'Promesas' },
+          { titulo: 'Catalogo', url: 'Promesas' },
+          { titulo: 'Eventos', url: 'rxjs' },
           // { titulo: 'ProgressBar', url: 'progress' },
         ],
       },

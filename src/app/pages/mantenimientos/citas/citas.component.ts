@@ -36,4 +36,8 @@ export class CitasComponent implements OnInit {
       Swal.fire('Actualizado', cita.motivo, 'success');
     });
   }
+
+  buscarCita(termino: string) {
+    console.log(termino);
+  }
 }

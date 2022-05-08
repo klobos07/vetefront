@@ -1,19 +1,18 @@
 <div class="row animated fadeIn fast">
   <div class="col-12">
-      <div class="card">
-          <div class="card-body">
-
-              <input type="text"
-                      class="form-control"
-                      placeholder="Buscar cita..."
-                      (keyup)="buscarCita( txtTermino.value )"
-                      #txtTermino/>
-
-          </div>
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar cita..."
+          (keyup)="buscarCita(txtTermino.value)"
+          #txtTermino
+        />
       </div>
+    </div>
   </div>
 </div>
-
 
 <div class="row animated fadeIn fast" *ngIf="cargando">
   <div class="col-12">
@@ -29,22 +28,18 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        
         <div class="row">
           <div class="col-8">
-            <h4 class="card-title">Citas ({{citas.length}})</h4>
-            <h6 class="card-subtitle">
-              Citas registradas en mi aplicación
-            </h6>
+            <h4 class="card-title">Citas ({{ citas.length }})</h4>
+            <h6 class="card-subtitle">Citas registradas en mi aplicación</h6>
           </div>
           <div class="col">
-              <div class="text-right">
-                <button class="btn btn-primary"
-                  (click)="abrirSweetAlert()">
-                  <i class="fa fa-hospital-o"></i>
-                  Crear Cita
-                </button>
-              </div>
+            <div class="text-right">
+              <button class="btn btn-primary" (click)="abrirSweetAlert()">
+                <i class="fa fa-hospital-o"></i>
+                Crear Cita
+              </button>
+            </div>
           </div>
         </div>
         <div class="table-responsive">
@@ -59,7 +54,9 @@
                 <th>Fecha</th>
                 <th>Mascota</th>
                 <th>Medico</th>
-                <th class="text-nowrap">Acciones</th>
+                <th class="text-nowrap" *ngIf="user.role == 'ADMIN_ROLE'">
+                  Acciones
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -71,6 +68,7 @@
                     class="form-control"
                     placeholder="Observaciones"
                     [(ngModel)]="cita.observaciones"
+                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
 
@@ -80,6 +78,7 @@
                     class="form-control"
                     placeholder="peso"
                     [(ngModel)]="cita.peso"
+                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
 
@@ -89,13 +88,17 @@
                     class="form-control"
                     placeholder="Tratamiento"
                     [(ngModel)]="cita.tratamiento"
+                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
                 <td>{{ cita.horaCita }}</td>
                 <td>{{ cita.fechCita }}</td>
                 <td>{{ cita.mascota.nombre }}</td>
                 <td>{{ cita.medico.nombre }}</td>
-                <td class="text-nowrap text-center">
+                <td
+                  class="text-nowrap text-center"
+                  *ngIf="user.role == 'ADMIN_ROLE'"
+                >
                   <a
                     (click)="guardarCambios(cita)"
                     data-toggle="tooltip"
@@ -103,14 +106,11 @@
                   >
                     <i class="fa fa-pencil text-inverse m-r-10"></i>
                   </a>
-                  
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-
       </div>
     </div>
   </div>

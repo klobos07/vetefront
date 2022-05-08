@@ -20,6 +20,9 @@ export class CitasComponent implements OnInit {
   public citas: Cita[] = [];
   public mascotas: any[] = [];
   public medico: any[] = [];
+  public user = {
+    role: '',
+  };
 
   constructor(
     private citasService: CitasService,
@@ -32,6 +35,12 @@ export class CitasComponent implements OnInit {
     this.cargarCitas();
     this.getMascotas();
     this.getMedicos();
+    this.getProfileInfo();
+  }
+
+  getProfileInfo() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user, 'user');
   }
 
   getMascotas() {

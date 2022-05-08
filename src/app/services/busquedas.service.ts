@@ -7,6 +7,7 @@ import { Usuario } from '../../models/usuario.model';
 import { Raza } from 'src/models/raza.models';
 import { Medico } from 'src/models/medico.model';
 import { Cita } from 'src/models/cita.model';
+import { Mascota } from 'src/models/mascotas.model';
 
 const base_url = environment.base_url;
 
@@ -85,6 +86,29 @@ export class BusquedasService {
     );
   }
 
+  private transformarMascotas(resultados: any[]): Mascota[] {
+    return resultados.map(
+      (mascota) =>
+        new Mascota(
+          mascota.nombreowner,
+          mascota.telefono,
+          mascota.nombre,
+          mascota.edad,
+          mascota.peso,
+          mascota.fechanac,
+          mascota.observaciones,
+          mascota.sexo,
+          mascota.usuario,
+          mascota.raza,
+          mascota.especie,
+          mascota._id
+        )
+    );
+  }
+
+
+
+
   buscar(
     tipo: 'usuarios' | 'medicos' | 'mascotas' | 'citas' | 'razas' | 'especies',
     termino: string
@@ -106,7 +130,9 @@ export class BusquedasService {
             return this.transformarMedicos(resp.resultados);
           case 'citas':
             return this.transformarCitas(resp.resultados);
-
+          case
+          'mascotas':
+            return this.transformarMascotas(resp.resultados);
           default:
             return [];
         }

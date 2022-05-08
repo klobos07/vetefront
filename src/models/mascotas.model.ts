@@ -16,17 +16,17 @@ interface _Mascota {
 
 export class Mascota {
     constructor(
-        public nombreowner: string,
-        public telefono: string,
-        public nombre: string,
-        public edad: number,
-        public peso: number,
-        public fechanac: string,
-        public observaciones: string,
-        public sexo: string,
-        public usuario: string,
-        public raza: string,
-        public especie: string,
+        public nombreowner?: string,
+        public telefono?: string,
+        public nombre?: string,
+        public edad?: number,
+        public peso?: number,
+        public fechanac?: string,
+        public observaciones?: string,
+        public sexo?: string,
+        public usuario?: string,
+        public raza?: string,
+        public especie?: string,
         public _id?: string,
     ) {}
 }

@@ -58,12 +58,6 @@ const routes: Routes = [
       },
       { path: 'citas', component: CitasComponent, data: { titulo: 'Citas' } },
       {
-        path: 'medicos',
-        canActivate: [RoleAdminGuard],
-        component: MedicosComponent,
-        data: { titulo: 'Médicos' },
-      },
-      {
         path: 'mascotas',
         component: MascotasComponent,
         data: { titulo: 'Mascotas' },

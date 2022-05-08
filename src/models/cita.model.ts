@@ -1,24 +1,30 @@
 // tslint:disable-next-line: class-name
-interface _RazaUser {
+interface _CitaUser {
     _id: string;
     motivo: string;
-    obsevaciones: string;
+    observaciones: string;
     peso: string;
     tratamiento: string;
     horaCita: string;
     fechCita: string;
     usuario: string;
+    mascota: string;
+    medico: string;
   }
   
   
   
-  export class Raza {
+  export class Cita {
       constructor(
-        public nombre: string,
-        public descripcion: string,
-        // tslint:disable-next-line: variable-name
-        public _id?: string,
-        public usuario?: _RazaUser,
-  
+        public motivo: string,
+        public observaciones: string,
+        public peso: string,
+        public tratamiento: string,
+        public horaCita: string,
+        public fechCita: string,
+        public usuario: string,
+        public mascota: string,
+        public medico: string,
+        public _id?: string
     ) {}
   }

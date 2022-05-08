@@ -1,16 +1,14 @@
-<div class="row animated fadeIn fast">
+<div class="row animated fadeIn fast" *ngIf="cargando">
   <div class="col-12">
-    <!----
-        <div class="alert alert-info text-center">
-          <h4 class="alert-heading">Cargando</h4>
-          <i class="fa fa-spin fa-refresh fa-2x"></i>
-          <p class="mb-0">Por favor espere</p>
-        </div>
--->
+    <div class="alert alert-info text-center">
+      <h4 class="alert-heading">Cargando</h4>
+      <i class="fa fa-spin fa-refresh fa-2x"></i>
+      <p class="mb-0">Por favor espere</p>
+    </div>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="!cargando">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
@@ -21,37 +19,59 @@
             <thead>
               <tr>
                 <th>Motivo</th>
-                <th>Obeservaciones</th>
+                <th>observaciones</th>
                 <th>Peso</th>
                 <th>Tratamiento</th>
                 <th>Hora</th>
                 <th>Fecha</th>
+                <th>Mascota</th>
+                <th>Medico</th>
                 <th class="text-nowrap">Acciones</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Lunar probe project</td>
-                <td>Lunar probe project</td>
-                <td>Lunar probe project</td>
-                <td>Lunar probe project</td>
-                <td>Lunar probe project</td>
-                <td>Lunar probe project</td>
+              <tr *ngFor="let cita of citas">
+                <td>{{ cita.motivo }}</td>
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Observaciones"
+                    [(ngModel)]="cita.observaciones"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="peso"
+                    [(ngModel)]="cita.peso"
+                  />
+                </td>
+
+                <td>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tratamiento"
+                    [(ngModel)]="cita.tratamiento"
+                  />
+                </td>
+                <td>{{ cita.tratamiento }}</td>
+                <td>{{ cita.horaCita }}</td>
+                <td>{{ cita.fechCita }}</td>
+                <td>{{ cita.mascota.nombre }}</td>
+                <td>{{ cita.medico.nombre }}</td>
                 <td class="text-nowrap text-center">
                   <a
-                    href="#"
+                    (click)="guardarCambios(cita)"
                     data-toggle="tooltip"
                     data-original-title="Editar"
                   >
                     <i class="fa fa-pencil text-inverse m-r-10"></i>
                   </a>
-                  <a
-                    href="#"
-                    data-toggle="tooltip"
-                    data-original-title="Borrar"
-                  >
-                    <i class="fa fa-close text-danger"></i>
-                  </a>
+
                 </td>
               </tr>
             </tbody>

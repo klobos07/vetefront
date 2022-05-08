@@ -33,7 +33,6 @@ export class SidebarService {
         submenu: [
           { titulo: 'Usuarios', url: 'usuarios' },
           { titulo: 'Citas Médicas', url: 'citas' },
-          { titulo: 'Médicos', url: 'medicos' },
           { titulo: 'Mascotas', url: 'mascotas' },
           { titulo: 'Razas', url: 'razas' },
           { titulo: 'Especies', url: 'especies' },

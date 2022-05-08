@@ -14,8 +14,14 @@ import { Cita } from '../../models/cita.model';
 })
 export class CitasService {
   public citas: Cita;
+  public user = {
+    role: '',
+    uid: '',
+  };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getProfileInfo();
+  }
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -29,8 +35,19 @@ export class CitasService {
     };
   }
 
+  getProfileInfo() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user, 'user');
+  }
+
   cargarCitas() {
-    const url = `${environment.base_url}/citas`;
+    let url = `${environment.base_url}/citas`;
+    if (this.user.role === 'ADMIN_ROLE') {
+      url = `${environment.base_url}/citas/${this.user.uid}`;
+    } else {
+      url = `${environment.base_url}/citas/usuario/${this.user.uid}`;
+    }
+
     return this.http.get(url, this.headers).pipe(
       map((resp: { ok: boolean; citas: Cita[] }) => resp.citas),
       catchError((err) => {

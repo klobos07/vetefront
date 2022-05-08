@@ -14,8 +14,14 @@ import { Mascota } from '../../models/mascotas.model';
 })
 export class MascotasService {
   public mascotas: Mascota[] = [];
+  public user = {
+    role: '',
+    uid: '',
+  };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getProfileInfo();
+  }
 
   get token(): string {
     return localStorage.getItem('token') || '';
@@ -29,8 +35,20 @@ export class MascotasService {
     };
   }
 
+  getProfileInfo() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user, 'user');
+  }
+
   cargarMascotas() {
-    const url = `${environment.base_url}/mascotas`;
+    let url = `${environment.base_url}/mascotas`;
+
+    if (this.user.role === 'ADMIN_ROLE') {
+      url = `${environment.base_url}/mascotas`;
+    } else {
+      url = `${environment.base_url}/mascotas/usuario/${this.user.uid}`;
+    }
+
     return this.http.get(url, this.headers).pipe(
       map((resp: { ok: boolean; mascotas: Mascota[] }) => resp.mascotas),
       catchError((err) => {

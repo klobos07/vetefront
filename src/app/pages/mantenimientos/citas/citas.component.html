@@ -62,35 +62,42 @@
             <tbody>
               <tr *ngFor="let cita of citas">
                 <td>{{ cita.motivo }}</td>
-                <td>
+                <td *ngIf="user.role == 'ADMIN_ROLE'">
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Observaciones"
                     [(ngModel)]="cita.observaciones"
-                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
+                <td *ngIf="user.role == 'USER_ROLE'">
+                  {{ cita.observaciones }}
+                </td>
 
-                <td>
+                <td *ngIf="user.role == 'ADMIN_ROLE'">
                   <input
                     type="text"
                     class="form-control"
                     placeholder="peso"
                     [(ngModel)]="cita.peso"
-                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
+                <td *ngIf="user.role == 'USER_ROLE'">
+                  {{ cita.peso }}
+                </td>
 
-                <td>
+                <td *ngIf="user.role == 'ADMIN_ROLE'">
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Tratamiento"
                     [(ngModel)]="cita.tratamiento"
-                    *ngIf="user.role == 'ADMIN_ROLE'"
                   />
                 </td>
+                <td *ngIf="user.role == 'USER_ROLE'">
+                  {{ cita.tratamiento }}
+                </td>
+
                 <td>{{ cita.horaCita }}</td>
                 <td>{{ cita.fechCita }}</td>
                 <td>{{ cita.mascota.nombre }}</td>

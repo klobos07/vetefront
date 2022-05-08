@@ -17,15 +17,27 @@ export class MascotasComponent implements OnInit {
   public mascotas: any[] = [];
   public razas: any[] = [];
   public especies: any[] = [];
+  public user = {
+    role: '',
+  };
 
   constructor(private MascotasService: MascotasService,
     private busquedasService: BusquedasService,
     ) {}
 
+
+
   ngOnInit(): void {
     this.cargarMascotas();
     this.getRazas();
     this.getEspecies();
+    this.getProfileInfo();
+  }
+
+
+  getProfileInfo() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    console.log(this.user, 'user');
   }
 
   getRazas() {

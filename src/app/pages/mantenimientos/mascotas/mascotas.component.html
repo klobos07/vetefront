@@ -35,7 +35,7 @@
           </div>
           <div class="col">
             <div class="text-right">
-              <button class="btn btn-primary" (click)="abrirSweetAlert()">
+              <button class="btn btn-primary" (click)="abrirSweetAlert()" *ngIf="user.role !== 'ADMIN_ROLE'">
                 <i class="fa fa-hospital-o"></i>
                 Crear Mascota
               </button>

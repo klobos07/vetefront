@@ -16,7 +16,7 @@ import { MascotasComponent } from './mantenimientos/mascotas/mascotas.component'
 import { CitasComponent } from './mantenimientos/citas/citas.component';
 import { RazasComponent } from './mantenimientos/razas/razas.component';
 import { EspeciesComponent } from './mantenimientos/especies/especies.component';
-//import RoleAdminGuard
+// import RoleAdminGuard
 import { RoleAdminGuard } from '../guard/role_admin.guard';
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
       {
         path: '',
         component: DashboardComponent,
-        data: { titulo: 'Dashboard' },
+        data: { titulo: 'Inicio' },
       },
       // { path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBar' }},
       // { path: 'grafica1', component: Grafica1Component, data: { titulo: 'Gráfica #1' }},

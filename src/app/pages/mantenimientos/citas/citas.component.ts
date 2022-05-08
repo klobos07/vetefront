@@ -6,6 +6,7 @@ import { Cita } from 'src/models/cita.model';
 
 //import citasService
 import { CitasService } from '../../../services/citas.service';
+import { BusquedasService } from 'src/app/services/busquedas.service';
 
 @Component({
   selector: 'app-citas',
@@ -16,7 +17,10 @@ export class CitasComponent implements OnInit {
   public cargando: boolean = true;
   public citas: Cita[] = [];
 
-  constructor(private citasService: CitasService) {}
+  constructor(
+    private citasService: CitasService,
+    private busquedasService: BusquedasService
+  ) {}
 
   ngOnInit(): void {
     this.cargarCitas();
@@ -38,6 +42,12 @@ export class CitasComponent implements OnInit {
   }
 
   buscarCita(termino: string) {
-    console.log(termino);
+    if (termino.length === 0) {
+      return this.cargarCitas();
+    }
+
+    this.busquedasService.buscar('citas', termino).subscribe((resp: Cita[]) => {
+      this.citas = resp;
+    });
   }
 }

@@ -50,4 +50,7 @@ export class CitasService {
     );
   }
 
+  buscar(termino: string) {
+  }
+
 }

@@ -7,13 +7,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 
-import { Cita } from '../../models/cita.model';
+import { Mascota } from '../../models/mascotas.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CitasService {
-  public citas: Cita;
+export class MascotasService {
+  public mascotas: Mascota[] = []; 
 
   constructor(private http: HttpClient) {}
 
@@ -29,31 +29,14 @@ export class CitasService {
     };
   }
 
-  cargarCitas() {
-    const url = `${environment.base_url}/citas`;
+  cargarMascotas() {
+    const url = `${environment.base_url}/mascotas`;
     return this.http.get(url, this.headers).pipe(
-      map((resp: { ok: boolean; citas: Cita[] }) => resp.citas),
+      map((resp: { ok: boolean; mascotas: Mascota[] }) => resp.mascotas),
       catchError((err) => {
         console.log(err);
         return of([]);
       })
     );
   }
-
-  actualizarCita(cita: Cita) {
-    let { observaciones, peso, tratamiento } = cita;
-    const url = `${environment.base_url}/citas/${cita._id}`;
-    return this.http.put(
-      url,
-      { observaciones, peso, tratamiento },
-      this.headers
-    );
-  }
-
-  crearCita(cita: Cita) {
-    const url = `${environment.base_url}/citas`;
-    return this.http.post(url, cita, this.headers);
-  }
-
-  buscar(termino: string) {}
 }
